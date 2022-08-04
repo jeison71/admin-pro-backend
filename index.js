@@ -11,6 +11,9 @@ const app = express();
 //configurar cors
 app.use(cors());
 
+//Lectura y parseo del body
+app.use(express.json());
+
 //base de datos
 dbConnection();
 
@@ -18,13 +21,8 @@ dbConnection();
 //mean_user
 
 //rutas
-app.get("/", (req, res) => {
-  //res.status(400)  puedo controlar el status de la peticion enviando el codigo apropiado
-  res.json({
-    ok: true,
-    msg: "Hola mundo",
-  });
-});
+app.use("/api/usuarios", require("./routes/usuarios"));
+app.use("/api/login", require("./routes/auth"));
 
 app.listen(process.env.PORT, () => {
   console.log("Servidor Corriendo en el puerto" + process.env.PORT);
