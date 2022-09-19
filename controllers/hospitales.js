@@ -23,7 +23,7 @@ const crearHospital = async (req, res = response) => {
     res.json({
       ok: true,
       msg: "Hospitales Creado",
-      hospitalDB,
+      hospital: hospitalDB,
     });
   } catch (error) {
     res.status(500).json({
@@ -39,8 +39,10 @@ const actualizarHospital = async (req, res = response) => {
   const id = req.params.id;
   const uid = req.uid;
   try {
-    const hospitalDB = Hospital.findById(uid);
+    console.log(id);
+    const hospitalDB = Hospital.findById(id);
     //
+    console.log(hospitalDB);
     if (!hospitalDB) {
       return res.status(404).json({
         ok: false,

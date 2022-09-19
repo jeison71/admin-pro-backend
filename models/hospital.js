@@ -17,12 +17,12 @@ const HospitalSchema = Schema(
       ref: "Usuario",
     },
   },
-  { collection: "Hospitales" }
+  { collection: "hospitales" }
 ); //el nombre que quiero aparezca en la bd
 
 //renombrar los _id _v, generados por mongoose
 HospitalSchema.method("toJSON", function () {
-  const { __v, ...object } = this.toObject();
+  const { __v,...object } = this.toObject();
   return object;
 });
 

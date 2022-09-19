@@ -13,11 +13,12 @@ const {
   crearMedico,
   actualizarMedico,
   borrarMedico,
+  getMedicoById,
 } = require("../controllers/medicos");
 
 const router = Router();
 
-router.get("/", getMedicos);
+router.get("/", validarJWT, getMedicos);
 
 //el sugundo parametro de esta ruta seria un unico middleware, si requiero llamar varios
 //los envio dentro de llaves [mid1, midl2..etc]
@@ -45,5 +46,7 @@ router.put(
 );
 
 router.delete("/:id", validarJWT, borrarMedico);
+
+router.get("/:id", validarJWT, getMedicoById);
 
 module.exports = router;
